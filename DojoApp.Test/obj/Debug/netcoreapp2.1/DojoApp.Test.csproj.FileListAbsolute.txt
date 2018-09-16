@@ -1,0 +1,17 @@
+E:\Proyectos2018\DojoApp\DojoApp.Test\bin\Debug\netcoreapp2.1\xunit.runner.visualstudio.dotnetcore.testadapter.dll
+E:\Proyectos2018\DojoApp\DojoApp.Test\bin\Debug\netcoreapp2.1\xunit.runner.reporters.netcoreapp10.dll
+E:\Proyectos2018\DojoApp\DojoApp.Test\bin\Debug\netcoreapp2.1\xunit.runner.utility.netcoreapp10.dll
+E:\Proyectos2018\DojoApp\DojoApp.Test\bin\Debug\netcoreapp2.1\DojoApp.Test.deps.json
+E:\Proyectos2018\DojoApp\DojoApp.Test\bin\Debug\netcoreapp2.1\DojoApp.Test.runtimeconfig.json
+E:\Proyectos2018\DojoApp\DojoApp.Test\bin\Debug\netcoreapp2.1\DojoApp.Test.runtimeconfig.dev.json
+E:\Proyectos2018\DojoApp\DojoApp.Test\bin\Debug\netcoreapp2.1\DojoApp.Test.dll
+E:\Proyectos2018\DojoApp\DojoApp.Test\bin\Debug\netcoreapp2.1\DojoApp.Test.pdb
+E:\Proyectos2018\DojoApp\DojoApp.Test\bin\Debug\netcoreapp2.1\DojoApp.Core.dll
+E:\Proyectos2018\DojoApp\DojoApp.Test\bin\Debug\netcoreapp2.1\DojoApp.Core.pdb
+E:\Proyectos2018\DojoApp\DojoApp.Test\obj\Debug\netcoreapp2.1\DojoApp.Test.csprojAssemblyReference.cache
+E:\Proyectos2018\DojoApp\DojoApp.Test\obj\Debug\netcoreapp2.1\DojoApp.Test.csproj.CoreCompileInputs.cache
+E:\Proyectos2018\DojoApp\DojoApp.Test\obj\Debug\netcoreapp2.1\DojoApp.Test.AssemblyInfoInputs.cache
+E:\Proyectos2018\DojoApp\DojoApp.Test\obj\Debug\netcoreapp2.1\DojoApp.Test.AssemblyInfo.cs
+E:\Proyectos2018\DojoApp\DojoApp.Test\obj\Debug\netcoreapp2.1\DojoApp.Test.csproj.CopyComplete
+E:\Proyectos2018\DojoApp\DojoApp.Test\obj\Debug\netcoreapp2.1\DojoApp.Test.dll
+E:\Proyectos2018\DojoApp\DojoApp.Test\obj\Debug\netcoreapp2.1\DojoApp.Test.pdb

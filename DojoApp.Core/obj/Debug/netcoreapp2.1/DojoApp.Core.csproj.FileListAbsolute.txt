@@ -1,0 +1,9 @@
+E:\Proyectos2018\DojoApp\DojoApp.Core\bin\Debug\netcoreapp2.1\DojoApp.Core.deps.json
+E:\Proyectos2018\DojoApp\DojoApp.Core\bin\Debug\netcoreapp2.1\DojoApp.Core.dll
+E:\Proyectos2018\DojoApp\DojoApp.Core\bin\Debug\netcoreapp2.1\DojoApp.Core.pdb
+E:\Proyectos2018\DojoApp\DojoApp.Core\obj\Debug\netcoreapp2.1\DojoApp.Core.csprojAssemblyReference.cache
+E:\Proyectos2018\DojoApp\DojoApp.Core\obj\Debug\netcoreapp2.1\DojoApp.Core.csproj.CoreCompileInputs.cache
+E:\Proyectos2018\DojoApp\DojoApp.Core\obj\Debug\netcoreapp2.1\DojoApp.Core.AssemblyInfoInputs.cache
+E:\Proyectos2018\DojoApp\DojoApp.Core\obj\Debug\netcoreapp2.1\DojoApp.Core.AssemblyInfo.cs
+E:\Proyectos2018\DojoApp\DojoApp.Core\obj\Debug\netcoreapp2.1\DojoApp.Core.dll
+E:\Proyectos2018\DojoApp\DojoApp.Core\obj\Debug\netcoreapp2.1\DojoApp.Core.pdb

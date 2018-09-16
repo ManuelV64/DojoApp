@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DojoApp.Web", "DojoApp.Web\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DojoApp.Core", "DojoApp.Core\DojoApp.Core.csproj", "{A787D2DB-5F88-48AF-9AA9-718A310A3C6F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DojoApp.Test", "DojoApp.Test\DojoApp.Test.csproj", "{29FD04F8-3D97-4330-A700-8F60CF0A5147}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{A787D2DB-5F88-48AF-9AA9-718A310A3C6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A787D2DB-5F88-48AF-9AA9-718A310A3C6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A787D2DB-5F88-48AF-9AA9-718A310A3C6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29FD04F8-3D97-4330-A700-8F60CF0A5147}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29FD04F8-3D97-4330-A700-8F60CF0A5147}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29FD04F8-3D97-4330-A700-8F60CF0A5147}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29FD04F8-3D97-4330-A700-8F60CF0A5147}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
