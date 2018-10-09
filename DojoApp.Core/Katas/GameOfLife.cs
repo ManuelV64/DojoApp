@@ -1,5 +1,6 @@
 ﻿using DojoApp.Core.Contracts;
 using DojoApp.Core.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -49,6 +50,31 @@ namespace DojoApp.Core.Katas
             newLiveCellCoordinateLis.AddRange(n3);
 
             return newLiveCellCoordinateLis;
+        }
+
+        public List<Coordinate2D> RandomGeneration(int percent)
+        {
+            Random rnd = new Random();
+            int element;
+            List<Coordinate2D> TotalCellCoordinateList = new List<Coordinate2D>();
+            List<Coordinate2D> FirstCellCoordinateList = new List<Coordinate2D>();
+
+            int TotalCells =(int)(MAX_X * MAX_Y * percent / 100);
+
+            for (int x = 1; x <= MAX_X; x++) {
+                for (int y = 1; y <= MAX_Y; y++) {
+                    TotalCellCoordinateList.Add(new Coordinate2D(x, y));
+                }
+            }
+
+            for (int i = 0; i < TotalCells; i++)
+            {
+                element = rnd.Next(0, TotalCellCoordinateList.Count - 1);
+                FirstCellCoordinateList.Add(TotalCellCoordinateList.ElementAt(element));
+                TotalCellCoordinateList.RemoveAt(element);
+            }
+
+            return FirstCellCoordinateList;
         }
     }
 }

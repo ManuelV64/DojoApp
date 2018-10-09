@@ -1,3 +1,6 @@
+using DojoApp.Core.Contracts;
+using DojoApp.Core.Katas;
+using DojoApp.Web.Hubs;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -21,11 +24,15 @@ namespace DojoApp.Web
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
+            services.AddSingleton<IGameOfLife, GameOfLife>();
+
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,6 +55,12 @@ namespace DojoApp.Web
                 routes.MapRoute(
                     name: "default",
                     template: "{controller}/{action=Index}/{id?}");
+            });
+
+
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<GameOfLifeHub>("/hubs/gameOfLifeHub");
             });
 
             app.UseSpa(spa =>

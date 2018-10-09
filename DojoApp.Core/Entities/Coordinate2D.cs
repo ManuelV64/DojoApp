@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace DojoApp.Core.Entities
 {
-    public class Coordinate2D
+    public class Coordinate2D : IComparable
     {
         private int _x;
         private int _y;
@@ -79,5 +80,16 @@ namespace DojoApp.Core.Entities
 
         public override string ToString()
             => $"({X}-{Y})";
+
+        public int CompareTo(object obj)
+        {
+            Coordinate2D coordinate = (Coordinate2D)obj;
+            if (Equals(coordinate))
+                return 0;
+            if (_x > coordinate.X || (_x == coordinate.X && _y > coordinate.Y))
+                return 1;
+            else
+                return -1;
+        }
     }
 }

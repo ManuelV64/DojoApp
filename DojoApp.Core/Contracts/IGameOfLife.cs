@@ -8,5 +8,6 @@ namespace DojoApp.Core.Contracts
     public interface IGameOfLife
     {
         List<Coordinate2D> NextGeneration(List<Coordinate2D> liveCellCoordinateList);
+        List<Coordinate2D> RandomGeneration(int percent);
     }
 }
