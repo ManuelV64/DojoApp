@@ -7,6 +7,7 @@ import { AlertComponent} from "../alert/alert.component";
   templateUrl: './game-of-life.component.html',
   styleUrls: ['./game-of-life.component.css']
 })
+
 export class GameOfLifeComponent implements OnInit ,OnDestroy {
   @ViewChild(AlertComponent) alert: AlertComponent;
 
@@ -22,22 +23,21 @@ export class GameOfLifeComponent implements OnInit ,OnDestroy {
 
   public board: number[][]=[];
   public coordinateLiveCellList: Coordinate2D[]=[];
-  //private coordinateLiveCell:Coordinate2D={ x:0 , y:0 };
-  private playerId        : string="";
-  private generationNumber: number=0;
-  private gameStarted     : boolean=false; 
-  private gameOver        : boolean=false;
-  private percentLiveCels : number =0;
+
+  private playerId         : string="";
+  private generationNumber : number=0;
+
+  private game=Game;
+  private stateGame :Game;
+  private percentLiveCels  : number =0;
 
   constructor() { 
     for(var x = 0; x<this.MAX_X; x++) {
       this.board[x]=[];
-      // for(var y = 0; y<this.MAX_Y; y++) {
-      //   this.board[x][y]=0;
-      // }
     }
 
     this.ClearBoard();
+    this.stateGame=Game.withoutGeneration0;
   }
 
   ngOnInit() {
@@ -50,7 +50,7 @@ export class GameOfLifeComponent implements OnInit ,OnDestroy {
   }
   
   ngOnDestroy() { 
-    if (this.gameStarted) {
+    if (this.stateGame=Game.started) {
       this.StopGame();
     }
 
@@ -77,27 +77,27 @@ export class GameOfLifeComponent implements OnInit ,OnDestroy {
     this._hubConnectionGame.on("ReceiveInitialGeneration", (coordinateLiveCellList: Coordinate2D[]) => {
       this.coordinateLiveCellList=coordinateLiveCellList;
       this.RefreshBoard();
+      this.stateGame=Game.withGeneration0;
     });
 
     this._hubConnectionGame.on("ReceivePlayerId", (playerId) => {
       this.playerId=playerId;
-      console.log(`playerId({this.playerId})`);
     });
 
     this._hubConnectionGame.on("ReceiveNextGeneration", (coordinateLiveCellList: Coordinate2D[]) => {
       this.coordinateLiveCellList=coordinateLiveCellList;
-      console.log(this.coordinateLiveCellList);
       this.RefreshBoard();
       this.generationNumber++;
     });
 
-    this._hubConnectionGame.on("ReceiveMessage", (message) => {
+    this._hubConnectionGame.on("ReceiveGameStopped", (message) => {
       this.alert.success(message);
+      this.stateGame=Game.stopped;
     });
 
     this._hubConnectionGame.on("ReceiveGameOver", (message) => {
       this.alert.danger(message);
-      this.gameOver=true;
+      this.stateGame=Game.gameOver;
     });
   }
 
@@ -108,12 +108,10 @@ export class GameOfLifeComponent implements OnInit ,OnDestroy {
     hubConnection  
       .start()  
       .then(() => {  
-        this.connectionIsEstablished = true;  
-        console.log('Hub connection started');  
-        //this.connectionEstablished.emit(true);  
+        this.connectionIsEstablished = true;   
       })  
-      .catch(err => {  
-        console.log('Error while establishing connection, retrying...');  
+      .catch(err => { 
+        this.alert.danger('Error while establishing connection, retrying...');
         setTimeout(this.startConnection(hubConnection), 5000);  
       });  
   }
@@ -131,20 +129,25 @@ export class GameOfLifeComponent implements OnInit ,OnDestroy {
   //
   private CalculateInitialGeneration(percentLiveCels:number){
     this._hubConnectionGame.invoke("SendInitialGeneration" ,percentLiveCels);
-    this.gameOver=false;
     this.generationNumber=0;
   }
 
   private StartGame(){
     this._hubConnectionGame.invoke("SendStartGame" ,this.coordinateLiveCellList);
-    this.gameStarted=true
+    this.stateGame=Game.started;
     this.alert.hide();  
   }
 
   private StopGame(){
     this._hubConnectionStopGame.invoke("SendStopGame" ,this.playerId);
     this.playerId="";
-    this.gameStarted=false;
+  }
+
+  private NewGame(){
+    this.ClearBoard();
+    this.stateGame=Game.withoutGeneration0;
+    this.generationNumber=0;
+    this.alert.hide(); 
   }
 
   private ClearBoard(){
@@ -163,6 +166,11 @@ export class GameOfLifeComponent implements OnInit ,OnDestroy {
     });
   }  
 }
+
+//===========================================================
+//    enum Game
+//===========================================================
+enum Game {withoutGeneration0,withGeneration0,started,stopped,gameOver}
 
 //===========================================================
 //    Class Coordinate2D

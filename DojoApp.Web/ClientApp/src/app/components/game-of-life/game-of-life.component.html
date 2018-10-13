@@ -1,64 +1,56 @@
 <h1>Game of life.</h1>
 <hr>
 
-  <!-- ------------------------------------------------
-    --   BOARD   
-    -- ------------------------------------------------
-  -->
-<table>
-  <ng-container *ngFor="let row of board; let x = index">
-    <ng-container *ngFor="let cell of row; let y = index">
-        <td *ngIf="cell==0">
-            <img src={{imgDiedCell}} alt="" height="20" width="20">
-        </td>
-          
-        <td *ngIf="cell==1">
-              <img src={{imgLiveCell}} alt="" height="20" width="20">
-        </td>
-    </ng-container>
-    <tr>
-  </ng-container>
-</table>
-
-<br>
-<div class="row">
-  <div class="col-sm-9">
-    <div>
-      <label>Generación: </label>
-      <input type="number" name="Cor_X"
-             [(ngModel)]="generationNumber">
-    </div>    
+<!-- ------------------------------------------------
+  --   BOARD   
+  -- ------------------------------------------------
+-->
+<div class="row" style="width: 1300px;">
+  <div class="col-md-4">
+      <table>
+          <ng-container *ngFor="let row of board; let x = index">
+            <ng-container *ngFor="let cell of row; let y = index">
+                <td *ngIf="cell==0">
+                    <img src={{imgDiedCell}} alt="" height="20" width="20">
+                </td>
+                  
+                <td *ngIf="cell==1">
+                      <img src={{imgLiveCell}} alt="" height="20" width="20">
+                </td>
+            </ng-container>
+            <tr>
+          </ng-container>
+        </table>  
+  </div>
+  <div class="col-md-1">
+      <div class="row"><hr></div>  
+      <div class="row"><label>Celulas vivas</label></div>
+      <div class="row"><input type="number"  [(ngModel)]="percentLiveCels" name="percenLC" size="3" min="1" max="100" step="1"> % </div>
+      <div class="row">
+        <br>
+        <button type="button" class="btn btn-primary btn-sm"
+          [disabled]="percentLiveCels<1 || percentLiveCels>100 || !(stateGame==game.withoutGeneration0 || stateGame==game.withGeneration0)"
+          (click)=CalculateInitialGeneration(percentLiveCels)>
+          Calcular generación 0.
+        </button>
+      </div>
   </div>
 </div>
 
-<div class="row">
-  <div class="col-sm-2">
-    <div>
-      <label>% Celulas vivas.: </label>
-      <input type="number" name="percentLC"
-             [(ngModel)]="percentLiveCels">
-    </div>    
-  </div>
-
-  <div class="col-sm-2">
-      <button type="button" class="btn btn-primary btn-sm"
-        [disabled]="percentLiveCels<1 || percentLiveCels>100"
-        (click)=CalculateInitialGeneration(percentLiveCels)>
-        Calcular generación 0.
-      </button>
-  </div>      
-</div>
 <br>
-<div class="container">
+<label>
+    Generación: <input readonly  value={{generationNumber}} name="gn"  size="8">
+</label>
+
+<br>
   <div class="row">
       <div class="col-8">
-          <p>Current count: <strong>{{ currentCount }}</strong></p>
-          <button [disabled]="gameStarted"   (click)="StartGame()">Empezar</button>
-          <button [disabled]="!gameStarted"  (click)="StopGame()" >Detener</button>
+          <button class="btn btn-primary btn-sm" [disabled]="!(stateGame==game.stopped || stateGame==game.withGeneration0)"   (click)="StartGame()">Iniciar</button>
+          <button class="btn btn-primary btn-sm" [disabled]="!(stateGame==game.started)"   (click)="StopGame()" >Detener</button>
+          <button class="btn btn-primary btn-sm" [disabled]="!(stateGame==game.stopped || stateGame==game.gameOver)"  (click)="NewGame()" >Nuevo juego.</button>
           <hr>
       </div>
   </div> 
-</div>
 
   <!-- ------------------------------------------------
     --   ALERT

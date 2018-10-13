@@ -18,7 +18,6 @@ namespace DojoApp.Web.Hubs
         {
             _game = game;
         }
-
         public async Task SendInitialGeneration(int percentLiveCels)
         {
             List<Coordinate2D> _newCellList;
@@ -47,39 +46,23 @@ namespace DojoApp.Web.Hubs
                     System.Threading.Thread.Sleep(500);
                     await Clients.Caller.SendAsync("ReceiveNextGeneration", _newCellList);
                     _oldCellList = _newCellList;
-
-                    System.Diagnostics.Debug.WriteLine("--> Receive next generation.");
                 }
                 else
                 {
                     _gameOver = true;
                     SendStopGame(playerId);
-
-                    System.Diagnostics.Debug.WriteLine("--> Game Over.");
                 }
             }
 
             if (_gameOver)
                 await Clients.Caller.SendAsync("ReceiveGameOver", " El juego ha terminado.");
             else
-                await Clients.Caller.SendAsync("ReceiveMessage", " El juego se ha detenido.");
+                await Clients.Caller.SendAsync("ReceiveGameStopped", " El juego se ha detenido.");
         }
 
         public void SendStopGame(string playerId)
         {
             _playerIdList.Remove(playerId);
-        }
-
-        public override async Task OnConnectedAsync()
-        {
-            await base.OnConnectedAsync();
-            System.Diagnostics.Debug.WriteLine($"--> Connected ConnectionId {Context.ConnectionId}");
-        }
-
-        public override Task OnDisconnectedAsync(Exception exception)
-        {
-            System.Diagnostics.Debug.WriteLine($"--> DISCONNECTED ConnectionId {Context.ConnectionId}");
-            return base.OnDisconnectedAsync(exception);
         }
     }
 }
