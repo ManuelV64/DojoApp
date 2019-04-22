@@ -60,7 +60,7 @@ namespace DojoApp.Web
 
             app.UseSignalR(routes =>
             {
-                routes.MapHub<GameOfLifeHub>("/hubs/gameOfLifeHub");
+                routes.MapHub<LifeGameHub>("/hubs/lifeGameHub");
             });
 
             app.UseSpa(spa =>

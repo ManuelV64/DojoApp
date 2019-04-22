@@ -1,0 +1,59 @@
+<form class="form-horizontal"
+      [formGroup]="lifeGameForm"
+      [class.error]="!lifeGameForm.valid && lifeGameForm.touched">
+  <div class="bg text border">
+    <div class="card-header">
+      <h2 class="panel-title border">Juego de la vida</h2>
+
+      <label for="genNumber">
+          <span>Generación </span>
+          <input type="text" class="col-3" name="genNumber"  formControlName="genNumber" />
+      </label>
+
+      <div>
+        <app-game-board [cellList]="cellList"></app-game-board>
+      </div>
+    </div>
+
+    <div class="card-body" *ngIf="showPanelBody">
+      <div class="form-group form-row"
+          [class.error]="!percentLiveCells.valid && percentLiveCells.touched">
+        <!-- <label class="col-sm-1control-label" >% Celulas Vivas.</label>
+        <div class="col-sm-1">
+          <input id="percentLiveCells" type="text" class="form-control is-invalid"
+                 formControlName="percentLiveCells">
+        </div>
+        <div class="col-sm-3">
+          <button type="button" class="btn btn-primary btn-sm"
+                 [disabled]="btnCalculateGen0_disabled" (click)=btnCalculateGen0_click(percentLiveCells.value)> Calcular generación 0.</button>
+        </div> -->
+
+        <label for="percentLiveCells">
+          <span>% Celulas vivas </span>
+          <input type="text" class="col-3 form-control" name="percentLiveCells"  formControlName="percentLiveCells"
+                 [ngClass]="{'is-invalid': !percentLiveCells.valid}"/>
+        </label>
+        <button type="button" class="btn btn-primary btn-sm"
+          [disabled]="btnCalculateGen0_disabled" (click)=btnCalculateGen0_click(percentLiveCells.value)> Calcular generación 0.</button>
+
+        <div *ngIf="!percentLiveCells.valid && !percentLiveCells.pristine"
+            class="invalid-feedback  d-block">
+              El valor del % de celulas vivas no es valido.
+
+            <div *ngIf="percentLiveCells.hasError('required')">% de celulas vivas es requerido.</div>
+            <div *ngIf="percentLiveCells.hasError('pattern')" >tiene ques ser un número entre 1 y 99.</div>
+            <div *ngIf="percentLiveCells.hasError('min')"     >tiene ques ser &gt; 0.</div>
+            <div *ngIf="percentLiveCells.hasError('max')"     >tiene ques ser &lt; 100.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="col-sm-8">
+        <button class="btn btn-primary btn-sm" [disabled]="btnStartGame_disabled" (click)="btnStartGame_click()">Iniciar</button>
+        <button class="btn btn-primary btn-sm" [disabled]="btnStopGame_disabled"  (click)="btnStopGame_click()" >Detener</button>
+        <button class="btn btn-primary btn-sm" [disabled]="btnNewGame_disabled"   (click)="btnNewGame_click()"  >Nuevo juego.</button>
+      </div>
+    </div>
+  </div>
+</form>

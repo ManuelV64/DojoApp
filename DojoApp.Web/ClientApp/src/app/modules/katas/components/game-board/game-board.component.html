@@ -1,0 +1,11 @@
+  <div>
+    <table>
+      <ng-container *ngFor="let row of cellList; let x = index">
+        <ng-container *ngFor="let cell of row; let y = index">
+            <img [src]="(cell==0)?  imgDiedCell : imgLiveCell"
+                 alt="" height="20" width="20">
+        </ng-container>
+        <tr>
+      </ng-container>
+    </table>
+  </div>

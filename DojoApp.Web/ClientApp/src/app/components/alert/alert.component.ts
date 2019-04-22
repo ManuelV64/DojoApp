@@ -1,40 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { IAlert } from 'src/app/interfaces/i-alert';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-alert',
   templateUrl: './alert.component.html',
-  styleUrls: ['./alert.component.css']
+  styles: []
 })
 export class AlertComponent implements OnInit {
+  @Input() Alert: IAlert;
 
-  private _alertClass : string;
-  private _alertHeader: string;
-  private _alertMsg : string;
-  private _showAlert : boolean;
-
-  constructor() { }
+  constructor(public activeModal: NgbActiveModal) { }
 
   ngOnInit() {
   }
-
-
-  success(msg:string){
-    this._alertClass="alert-success";
-    this.showAlert(msg);
-  }
-
-  danger(msg:string){
-    this._alertClass="alert-danger";
-    this.showAlert(msg);
-  }
-
-  private showAlert(msg:string){
-    this._alertMsg=msg;
-    this._showAlert=true;
-  }
-
-  hide (){ 
-    this._showAlert=false; 
-  }
-
 }
