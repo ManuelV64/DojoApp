@@ -8,7 +8,8 @@ namespace DojoApp.Web.DTOs
 {
     public class GenerationOfCellsDto
     {
-        public List<Coordinate2D> liveCellList { get; set; }
         public int genNumber { get; set; }
+        public List<Coordinate2D> liveCellList { get; set; }
+        public bool? gameOver { get; set; }
     }
 }

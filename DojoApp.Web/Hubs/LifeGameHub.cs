@@ -64,7 +64,8 @@ namespace DojoApp.Web.Hubs
             List<Coordinate2D> oldCellList = oldGeneration.liveCellList;
             List<Coordinate2D> newCellList;
 
-            newCellList = _game.NextGeneration(oldCellList);
+            newCellList = await Task.Run(() => _game.NextGeneration(oldCellList));
+            // newCellList = _game.NextGeneration(oldCellList);
 
             if (Enumerable.SequenceEqual(newCellList.OrderBy(HashCode => HashCode),
                                          oldCellList.OrderBy(HashCode => HashCode)))
